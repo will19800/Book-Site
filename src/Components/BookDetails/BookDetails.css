@@ -1,0 +1,35 @@
+
+
+.container-book-details {
+    height: 100%;
+    max-width: 1200px;
+    flex-direction: column;
+    display: flex;
+    margin: 0px auto;
+}
+
+.book-details {
+    height: 304px;
+    width: 202px;
+    border-radius: 5px;
+}
+
+.star-rating {
+  display: inline-block;
+}
+
+.stars-outer {
+  display: inline-block;
+  overflow: hidden;
+  font-size: 24px; /* Adjust star size as needed */
+}
+
+.stars-inner {
+  white-space: nowrap;
+  width: 100%;
+}
+
+.stars-inner::before {
+  content: "\2605\2605\2605\2605\2605"; /* Five filled stars */
+  color: gold; /* Filled star color */
+}

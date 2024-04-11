@@ -1,0 +1,7 @@
+.container-authentication {
+    height: 100%;
+    max-width: 500px;
+    flex-direction: column;
+    display: flex;
+    margin: 0px auto;
+}
