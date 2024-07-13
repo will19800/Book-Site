@@ -5,6 +5,7 @@ const titleURL = 'https://openlibrary.org/search.json?title=';
 
 const AppContext = React.createContext()
 
+// Create a component to pass api data to all components
 const AppProvider = ({children}) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [books, setBooks] = useState([]);

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Home.css';
 import linkedlnicon from '../../images/linkedlnicon.svg'
 import githubicon from '../../images/githubicon.svg'

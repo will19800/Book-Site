@@ -15,21 +15,40 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000', 
+    'http://127.0.0.1:3000'
+    
+]
+CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ninja',
-    'booksiteAPI'
 ]
 
+THIRD_PARTY_APPS = [
+    'corsheaders',
+    
+]
+
+LOCAL_APPS = [
+    'apps.accounts',
+    'apps.common',
+    
+    
+]
+
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -66,8 +85,8 @@ WSGI_APPLICATION = 'booksite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'booksitelogin',
-        'USER': 'booksiteuser',
+        'NAME': 'booksite',
+        'USER': 'postgres',
         'PASSWORD': 'MySixthSense!9800',
         'HOST': 'localhost',
         'PORT': '5432'
@@ -93,6 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'accounts.User'
+
+# AUTHENTICATION_BACKENDS = ['booksite.backends.EmailAuth']
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
