@@ -1,4 +1,6 @@
 import React from "react";
+import googleicon from '../../images/googleicon.svg'
+import appleicon from '../../images/appleicon.svg'
 
 function Signuppop({ closeModal }) {
   return (
@@ -13,11 +15,13 @@ function Signuppop({ closeModal }) {
             <div className="my-2 px-1 text-grey">Use your email or another service to connect with NovelCorner.</div>
           </div>
           <div className="modalBody mt-8">
-            <a className="google_signup block mx-auto mb-3 rounded-xl bg-lightgrey text-center p-3 w-80">
-                <span>Continue with Google</span>
+            <a className="google_signup mx-auto flex mb-3 rounded-xl bg-lightgrey text-center items-center p-3 w-80">
+                <img className="googleicon ml-2 h-5 w-5 justify-center" src={googleicon}/>
+                <span className="ml-11">Continue with Google</span>
             </a>
-            <a className="apple_signup block mx-auto mb-3 rounded-xl bg-lightgrey text-center p-3 w-80">
-                <span>Continue with Apple</span>
+            <a className="apple_signup flex mx-auto mb-3 rounded-xl bg-lightgrey text-center items-center p-3 w-80">
+                <img className="googleicon ml-1.5 h-6 w-6 justify-center" src={appleicon}/>
+                <span className="ml-11">Continue with Apple</span>
             </a>
             <a className="email_signup block mx-auto mb-3 rounded-xl bg-lightblue shadow-lg text-center p-3 w-80">
                 <span>Continue with Email</span>
