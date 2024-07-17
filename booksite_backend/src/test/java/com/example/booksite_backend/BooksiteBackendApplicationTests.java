@@ -1,4 +1,4 @@
-package com.example.Booksite_Backend;
+package com.example.booksite_backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

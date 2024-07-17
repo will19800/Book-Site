@@ -1,4 +1,4 @@
-package com.example.Booksite_Backend.appuser;
+package com.example.booksite_backend.appuser;
 
 public enum AppUserRole {
     USER,

@@ -1,4 +1,4 @@
-package com.example.Booksite_Backend;
+package com.example.booksite_backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

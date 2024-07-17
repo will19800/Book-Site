@@ -5,8 +5,8 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/registration
-    password:
+    url: jdbc:postgresql://localhost:5432/booksite
+    password: MySixthSense!9800
     username:
   jpa:
     hibernate:
