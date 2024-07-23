@@ -20,16 +20,12 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurityConfig {
 
     private final AppUserService appUserService;
-
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider daoProvider = new DaoAuthenticationProvider();
-        daoProvider.setPasswordEncoder(bCryptPasswordEncoder());
+        daoProvider.setPasswordEncoder(bCryptPasswordEncoder);
         daoProvider.setUserDetailsService(appUserService);
         return daoProvider;
     }

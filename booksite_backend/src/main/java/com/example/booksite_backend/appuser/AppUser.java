@@ -1,6 +1,5 @@
 package com.example.booksite_backend.appuser;
 
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,8 +40,8 @@ public class AppUser implements UserDetails {
     private String email;
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
-    private Boolean locked;
-    private Boolean enabled;
+    private Boolean locked = false;
+    private Boolean enabled = false;
 
     // Create a constructor for AppUser class
     public AppUser(String firstName, String lastName, String password, String email, AppUserRole appUserRole) {
