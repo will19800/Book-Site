@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Searchform from "../SearchForm/SearchForm";
-import Signuppop from "../Popups/Signuppop";
-import dropDownLogo from "../../images/shittydropdown.svg";
+import SignIn from "../AccountPopups/SignIn";
+import SignUp from "../AccountPopups/SignUp"
+import EmailSignIn from "../AccountPopups/EmailSignIn";
+import EmailSignUp from "../AccountPopups/EmailSignUp";
 
 const Navbar = () => {
-  const [openModal, setOpenModal] = useState(false);
+  const [openSignInModal, setOpenSignInModal] = useState(false);
+  const [openSignUpModal, setOpenSignUpModal] = useState(false);
+  const [openEmailSignInModal, setOpenEmailSignInModal] = useState(false);
+  const [openEmailSignUpModal, setOpenEmailSignUpModal] = useState(false);
 
   return (
     <nav id="navbar">
@@ -19,17 +24,18 @@ const Navbar = () => {
           <div className={'flex items-center font-radiocanada'}>
               <Searchform />
               <span className="border-1 h-10 w-0.5 bg-darkwhite mx-5"></span>
-              {/* <Link to="/Authentication"> */}
-              <button className="mx-3 text-mainblue" onClick={() => setOpenModal(true)}>
+              <button className="mx-3 text-mainblue" onClick={() => setOpenSignInModal(true)}>
               Sign in
               </button>
-              <button className="mx-3 bg-mainblue p-3 text-backgroundwhite rounded-xl shadow-md" >
+              <button className="mx-3 bg-mainblue p-3 text-backgroundwhite rounded-xl shadow-md" onClick={() => setOpenSignUpModal(true)}>
               Sign up
               </button>
-              {/* </Link> */}
           </div>
       </div>
-      {openModal && <Signuppop closeModal={setOpenModal} />}
+      {openSignInModal && <SignIn closeSignInModal={setOpenSignInModal} closeEmailSignInModal={setOpenEmailSignInModal}/>}
+      {openSignUpModal && <SignUp closeSignUpModal={setOpenSignUpModal} closeEmailSignUpModal={setOpenEmailSignUpModal}/>}
+      {openEmailSignInModal && <EmailSignIn closeEmailSignInModal={setOpenEmailSignInModal} />}
+      {openEmailSignUpModal && <EmailSignUp closeEmailSignUpModal={setOpenEmailSignUpModal} />}
     </nav>
   );
 };
