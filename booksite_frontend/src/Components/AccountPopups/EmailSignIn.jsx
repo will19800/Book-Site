@@ -1,6 +1,26 @@
 import React from "react";
+import { useState } from "react";
 
 const EmailSignIn = ({ closeEmailSignInModal }) => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const handleSubmit = async() => {
+    const response = await fetch("http://localhost:8080/api/v1/registration/login", {
+      method: "POST",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        email,
+        password
+      })
+    })
+    console.log(JSON.stringify({email, password}))
+    const data = await response.json()
+    console.log(data)
+  }
+
+
+
   return (
     <div className="modalBackground fixed inset-0 bg-gray-900 bg-opacity-30 z-50">
       <div className="modalCell my-32 flex items-center justify-center">
@@ -20,6 +40,8 @@ const EmailSignIn = ({ closeEmailSignInModal }) => {
                 className="bg-transparent flex-grow outline-none custom-input items-center placeholder-grey placeholder-opacity-0.5"
                 type="Text"
                 placeholder="Email"
+                value = {email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="bg-white flex outline mx-auto mb-3 rounded-xl shadow-lg text-center p-3 w-80">
@@ -27,10 +49,12 @@ const EmailSignIn = ({ closeEmailSignInModal }) => {
                 className="bg-transparent flex-grow outline-none custom-input items-center placeholder-grey placeholder-opacity-0.5"
                 type="Text"
                 placeholder="Password"
+                value = {password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <form>
-            <a className="email_signup block mx-auto mb-3 rounded-xl bg-lightblue shadow-lg text-center p-3 w-80">
+            <a className="email_signup block mx-auto mb-3 rounded-xl bg-lightblue shadow-lg text-center p-3 w-80" onClick={handleSubmit}>
               <span>Sign In</span>
             </a>
             </form>

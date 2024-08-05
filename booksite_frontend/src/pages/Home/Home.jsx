@@ -1,5 +1,6 @@
 import React from 'react';
 import './Home.css';
+import { Link } from 'react-router-dom'; 
 import linkedlnicon from '../../images/linkedlnicon.svg'
 import githubicon from '../../images/githubicon.svg'
 import emailicon from '../../images/emailicon.svg'
@@ -21,9 +22,11 @@ const Home = () => {
             <p className='text-center font-semibold text-xl max-w-80 text-grey my-8'>
               Find any book you're looking for or join our community of avid readers.
             </p>
-            <button className='mx-auto mb-4 rounded-xl bg-lightblue shadow-lg p-3 w-60'>
-              Start Searching
-            </button>
+            <Link to={"/search"}>
+              <button className='mx-auto mb-4 rounded-xl bg-lightblue shadow-lg p-3 w-60'>
+                Start Searching
+              </button>
+            </Link>
             <button className='mx-auto rounded-xl outline shadow-lg p-3 w-60'>
               Explore the Community
             </button>

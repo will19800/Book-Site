@@ -8,6 +8,7 @@ const SignIn = ({ closeSignInModal, closeEmailSignInModal }) => {
     closeEmailSignInModal(true);
   };
 
+
   return (
     <div className="modalBackground fixed inset-0 bg-gray-900 bg-opacity-30 z-50">
       <div className="modalCell my-32 flex items-center justify-center">

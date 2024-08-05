@@ -11,10 +11,10 @@ const EmailSignUp = ({ closeEmailSignUpModal }) => {
       const firstName = nameParts[0]
       const lastName = nameParts[1]
 
-      const response = await fetch("http://localhost:8080/api/v1/registration", {
+      const response = await fetch("http://localhost:8080/api/v1/auth/register", {
         method:"POST",
         headers: {
-          'Content-Type': 'application/json', 
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           firstName,

@@ -1,4 +1,4 @@
-package com.example.booksite_backend.security.config;
+package com.example.booksite_backend.security;
 
 import jakarta.annotation.Nonnull;
 import org.springframework.context.annotation.Bean;

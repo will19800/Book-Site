@@ -1,12 +1,12 @@
-package com.example.booksite_backend.appuser;
+package com.example.booksite_backend.repository;
 
+import com.example.booksite_backend.entity.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Repository

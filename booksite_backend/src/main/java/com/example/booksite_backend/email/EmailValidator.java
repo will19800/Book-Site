@@ -1,4 +1,4 @@
-package com.example.booksite_backend.registration;
+package com.example.booksite_backend.email;
 
 import org.springframework.stereotype.Service;
 

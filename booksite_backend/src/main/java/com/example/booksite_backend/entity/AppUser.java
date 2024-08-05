@@ -1,23 +1,20 @@
-package com.example.booksite_backend.appuser;
+package com.example.booksite_backend.entity;
 
+import com.example.booksite_backend.dto.AppUserRole;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import jakarta.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 // Create appUser class as a table in database
-@Getter
-@Setter
-@EqualsAndHashCode
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class AppUser implements UserDetails {
 
@@ -54,8 +51,7 @@ public class AppUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(appUserRole.name());
-        return Collections.singletonList(authority);
+        return List.of(new SimpleGrantedAuthority(appUserRole.name()));
     }
 
     @Override 

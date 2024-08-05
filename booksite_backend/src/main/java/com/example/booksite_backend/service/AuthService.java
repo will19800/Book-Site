@@ -1,12 +1,21 @@
-package com.example.booksite_backend.registration;
+package com.example.booksite_backend.service;
 
-import com.example.booksite_backend.appuser.AppUser;
-import com.example.booksite_backend.appuser.AppUserRole;
-import com.example.booksite_backend.appuser.AppUserService;
+import com.example.booksite_backend.dto.LoginDto;
+import com.example.booksite_backend.dto.RegistrationDto;
+import com.example.booksite_backend.entity.AppUser;
+import com.example.booksite_backend.dto.AppUserRole;
+import com.example.booksite_backend.email.EmailValidator;
 import com.example.booksite_backend.email.EmailSender;
-import com.example.booksite_backend.registration.token.ConfirmationToken;
-import com.example.booksite_backend.registration.token.ConfirmationTokenService;
+import com.example.booksite_backend.entity.ConfirmationToken;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,14 +23,18 @@ import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
-public class RegistrationService {
+public class AuthService {
 
     private final AppUserService appUserService;
     private final EmailValidator emailValidator;
+    private final AuthenticationManager authenticationManager;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
+    private final static Logger log = LoggerFactory.getLogger(AuthService.class);
 
-    public String register(RegistrationRequest request) {
+
+
+    public String register(RegistrationDto request) {
         boolean isValidEmail = emailValidator.test(request.getEmail());
 
         if (!isValidEmail) {
@@ -135,3 +148,4 @@ public class RegistrationService {
                 "</div></div>";
     }
 }
+

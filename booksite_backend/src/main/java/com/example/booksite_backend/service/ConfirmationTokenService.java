@@ -1,5 +1,7 @@
-package com.example.booksite_backend.registration.token;
+package com.example.booksite_backend.service;
 
+import com.example.booksite_backend.entity.ConfirmationToken;
+import com.example.booksite_backend.repository.ConfirmationTokenRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
