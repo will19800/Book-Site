@@ -1,5 +1,6 @@
-package com.example.booksite_backend.entity;
+package com.example.booksite_backend.token;
 
+import com.example.booksite_backend.user.AppUser;
 import jakarta.persistence.*;
 
 import lombok.Getter;

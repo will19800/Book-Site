@@ -1,6 +1,5 @@
-package com.example.booksite_backend.repository;
+package com.example.booksite_backend.token;
 
-import com.example.booksite_backend.entity.ConfirmationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

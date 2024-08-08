@@ -1,6 +1,5 @@
-package com.example.booksite_backend.repository;
+package com.example.booksite_backend.user;
 
-import com.example.booksite_backend.entity.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

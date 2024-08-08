@@ -1,11 +1,14 @@
 package com.example.booksite_backend.security;
 
-import com.example.booksite_backend.repository.AppUserRepository;
-import com.example.booksite_backend.service.AppUserService;
+import com.example.booksite_backend.user.AppUserRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +19,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-    private AppUserRepository appUserRepository;
+    @Autowired
+    private final AppUserRepository appUserRepository;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -30,7 +34,7 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
+    public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setPasswordEncoder(passwordEncoder());
         authProvider.setUserDetailsService(userDetailsService());
@@ -42,5 +46,8 @@ public class ApplicationConfig {
         return config.getAuthenticationManager();
     }
 
-
 }
+
+
+
+

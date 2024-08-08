@@ -1,6 +1,5 @@
-package com.example.booksite_backend.entity;
+package com.example.booksite_backend.user;
 
-import com.example.booksite_backend.dto.AppUserRole;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.*;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 // Create appUser class as a table in database
@@ -38,10 +36,10 @@ public class AppUser implements UserDetails {
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
     private Boolean locked = false;
-    private Boolean enabled = false;
+    private Boolean enabled = true;
 
     // Create a constructor for AppUser class
-    public AppUser(String firstName, String lastName, String password, String email, AppUserRole appUserRole) {
+    public AppUser(String firstName, String lastName, String password, String email, AppUserRole appUserRole)  {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;

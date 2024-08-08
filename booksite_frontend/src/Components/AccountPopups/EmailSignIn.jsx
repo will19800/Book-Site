@@ -5,18 +5,21 @@ const EmailSignIn = ({ closeEmailSignInModal }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleSubmit = async() => {
-    const response = await fetch("http://localhost:8080/api/v1/registration/login", {
-      method: "POST",
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        email,
-        password
+  const handleSubmit = async () => {
+    try{
+      const response = await fetch("http://localhost:8080/api/v1/auth/login", {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          email,
+          password
+        })
       })
-    })
-    console.log(JSON.stringify({email, password}))
-    const data = await response.json()
-    console.log(data)
+  
+      console.log(JSON.stringify({email, password}))
+      const data = await response.json()
+      console.log(data)
+    } catch {}
   }
 
 

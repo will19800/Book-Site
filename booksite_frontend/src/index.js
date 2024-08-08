@@ -22,8 +22,6 @@ root.render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/authentication" element={<Authentication />} />
-        {/* <Route path="/authentication/createaccount" element={<CreateAccount />} />
-        <Route path='/authentication/forgotpassword' element={<ForgotPassword />} /> */}
         <Route path='/search' element={<Search />} />
         <Route path="/search/book/:id" element={<BookHome />} />
       </Routes>

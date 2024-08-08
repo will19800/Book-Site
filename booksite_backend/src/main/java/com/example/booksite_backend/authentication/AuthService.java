@@ -1,24 +1,23 @@
-package com.example.booksite_backend.service;
+package com.example.booksite_backend.authentication;
 
-import com.example.booksite_backend.dto.LoginDto;
-import com.example.booksite_backend.dto.RegistrationDto;
-import com.example.booksite_backend.entity.AppUser;
-import com.example.booksite_backend.dto.AppUserRole;
+import com.example.booksite_backend.token.ConfirmationTokenService;
+import com.example.booksite_backend.user.AppUser;
+import com.example.booksite_backend.user.AppUserRole;
 import com.example.booksite_backend.email.EmailValidator;
 import com.example.booksite_backend.email.EmailSender;
-import com.example.booksite_backend.entity.ConfirmationToken;
+import com.example.booksite_backend.token.ConfirmationToken;
+import com.example.booksite_backend.user.AppUserRepository;
+import com.example.booksite_backend.security.JwtService;
+import com.example.booksite_backend.user.AppUserService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
 
 @Service
@@ -26,15 +25,29 @@ import java.time.LocalDateTime;
 public class AuthService {
 
     private final AppUserService appUserService;
+    private final UserDetailsService userDetailsService;
+    private final JwtService jwtService;
     private final EmailValidator emailValidator;
     private final AuthenticationManager authenticationManager;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
-    private final static Logger log = LoggerFactory.getLogger(AuthService.class);
 
+    public AuthenticationResponse login(AuthenticationRequest request) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword()
+                )
+        );
 
+        var user = appUserService.loadUserByUsername(request.getEmail());
+        var jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse.builder()
+                .accessToken(jwtToken)
+                .build();
+    }
 
-    public String register(RegistrationDto request) {
+    public AuthenticationResponse register(RegisterRequest request) {
         boolean isValidEmail = emailValidator.test(request.getEmail());
 
         if (!isValidEmail) {
@@ -50,10 +63,18 @@ public class AuthService {
                         AppUserRole.USER)
 
                 );
+
         String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
 
         emailSender.send(request.getEmail(), buildEmail(request.getFirstName(), link));
-        return token;
+
+//        var user = appUserService.loadUserByUsername(request.getEmail());
+//        var jwtToken = jwtService.generateToken(user);
+
+        return AuthenticationResponse.builder()
+                .accessToken("5")
+                .confirmationToken(token)
+                .build();
     }
 
     @Transactional

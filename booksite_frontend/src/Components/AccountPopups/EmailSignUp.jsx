@@ -20,7 +20,7 @@ const EmailSignUp = ({ closeEmailSignUpModal }) => {
           firstName,
           lastName,
           email,
-          password
+          password,
         })
       });
 

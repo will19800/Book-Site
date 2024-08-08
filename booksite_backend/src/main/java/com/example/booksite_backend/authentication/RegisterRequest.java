@@ -1,4 +1,4 @@
-package com.example.booksite_backend.dto;
+package com.example.booksite_backend.authentication;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -9,9 +9,10 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class RegistrationDto {
+public class RegisterRequest {
     private final String firstName;
     private final String lastName;
     private final String email;
     private final String password;
+    private final String user;
 }

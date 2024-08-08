@@ -1,4 +1,4 @@
-package com.example.booksite_backend.dto;
+package com.example.booksite_backend.authentication;
 
 import lombok.*;
 
@@ -6,7 +6,8 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class LoginDto {
+@Builder
+public class AuthenticationRequest {
     private final String email;
     private final String password;
 
